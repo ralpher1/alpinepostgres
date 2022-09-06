@@ -1,0 +1,46 @@
+version: "3"
+services:
+  testreact:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        VERSION: 16
+    ports:
+      - "3000:3000"
+    #networks: 
+    #  - mynet    
+    volumes:
+      - ..:/testReact 
+    command: /bin/sh -c "while sleep 1000;do :;done"
+    depends_on:
+      - postgresdb
+
+  postgresdb:  
+    image: postgres:alpine
+    #command: --default-authentication-plugin=mysql_native_password
+    #networks: 
+    #  - mynet
+    #expose: 
+    #   - '3306'
+    environment:
+      #MYSQL_ROOT_HOST: "%"
+      #MYSQL_ROOT_PASSWORD: test1234
+      #MYSQL_PASSWORD: test1234
+      #MYSQL_DATABASE: test1  
+      #MYSQL_USER: mysql1
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test
+      POSTGRES_PASSWORD: test1234
+      #mysql user myswl database myswl password etc etc
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbstuff1:/var/lib/postgresql/data
+      # - dbstuff:/var/lib/mysql
+
+volumes:
+  dbstuff1:
+
+          #networks:
+          # mynet:
