@@ -1,4 +1,5 @@
 var exp=require("express");
+const path=require("path");
 const app=exp();
 const port=3000;
 
@@ -6,11 +7,11 @@ app.use("/get",(req,res,next)=>{console.log("req"),next()});
 
 app.use("/",(req,res,next)=>{console.log("req1"),next()});
 
-app.use(exp.static('../build'));
+app.use(exp.static(path.join(__dirname,'../build')));
 
 
-app.use("/",(req,res,next)=>{console.log("Shouldnt run");next()});
-app.get("/",(req,res,next)=>{console.log("Shouldnt run2");next()});
+//app.use("/",(req,res,next)=>{console.log("Shouldnt run");next()});
+//app.get("/",(req,res,next)=>{console.log("Shouldnt run2");next()});
 app.get("/get",(req,res,next)=>{
 
 	console.log("get");
