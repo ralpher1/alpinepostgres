@@ -15,7 +15,7 @@ app.get("/get",(req,res,next)=>{
 
 	console.log("get");
 	//res.local('wtf1',"1");
-	res.send("blah");
+	res.send("more more");
 	var x=1;
 	next();
 
